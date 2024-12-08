@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="CodeHim">
+    <title>HTML Scientific Calculator Example</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Demo CSS (No need to include it into your project) -->
+    <link rel="stylesheet" href="css/demo.css">
+  </head>
+  <body>
+    <main>
+      <div class="calculator">
+        <input type="text" id="screen" maxlength="100">
+        <div class="calc-buttons">
+          <!-- Left section with 40% width -->
+          <div class="functions-one">
+            <button class="button triggers">C</button>
+            <button class="button basic-stuff">(</button>
+            <button class="button basic-stuff">)</button>
+            <button class="button numbers">7</button>
+            <button class="button numbers">8</button>
+            <button class="button numbers">9</button>
+            <button class="button numbers">4</button>
+            <button class="button numbers">5</button>
+            <button class="button numbers">6</button>
+            <button class="button numbers">1</button>
+            <button class="button numbers">2</button>
+            <button class="button numbers">3</button>
+            <button class="button basic-stuff">±</button>
+            <button class="button numbers">0</button>
+            <button class="button basic-stuff">.</button>
+          </div>
+  
+          <!-- Right section with 40% width -->
+          <div class="functions-two">
+            <button class="button triggers">&#60;=</button>
+            <button class="button complex-stuff">%</button>
+            <button class="button complex-stuff">x !</button>
+            <button class="button complex-stuff">x^</button>
+            <button class="button basic-stuff">*</button>
+            <button class="button basic-stuff">/</button>
+            <button class="button complex-stuff">ln</button>
+            <button class="button complex-stuff">e</button>
+            <button class="button basic-stuff">+</button>
+            <button class="button complex-stuff">x ²</button>
+            <button class="button complex-stuff">log</button>
+            <button class="button complex-stuff">cos</button>
+            <button class="button basic-stuff">-</button>
+            <button class="button complex-stuff">√</button>
+            <button class="button complex-stuff">sin</button>
+            <button class="button complex-stuff">tan</button>
+            <button class="button triggers">=</button>
+            <button class="button complex-stuff">&#x003C0;</button>
+            <button class="button complex-stuff">∘</button>
+            <button class="button complex-stuff">rad</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer with "made by" text -->
+    <footer>
+      <p>
+        Made by Abdalah Abo Hamore and Hamzeh Barakakat. All code in 
+        <a href="https://github.com/hamzehbarakat7/sintific-calcoulater" target="_blank">Hamzeh's GitHub Account</a>
+      </p>
+    </footer>
+    <script>
+      var display = document.getElementById("screen");
+var buttons = document.getElementsByClassName("button");
+  
+  Array.prototype.forEach.call(buttons, function(button) {
+  button.addEventListener("click", function() {
+    if (button.textContent != "=" && 
+    button.textContent != "C" && 
+    button.textContent != "x" && 
+    button.textContent != "÷" && 
+    button.textContent != "√" && 
+    button.textContent != "x ²" && 
+    button.textContent != "%" && 
+    button.textContent != "<=" && 
+    button.textContent != "±" && 
+    button.textContent != "sin" && 
+    button.textContent != "cos" && 
+    button.textContent != "tan" && 
+    button.textContent != "log" && 
+    button.textContent != "ln" && 
+    button.textContent != "x^" && 
+    button.textContent != "x !" && 
+    button.textContent != "π" && 
+    button.textContent != "e" && 
+    button.textContent != "rad" 
+    && button.textContent != "∘") {
+      display.value += button.textContent;
+    } else if (button.textContent === "=") {
+      equals();
+    } else if (button.textContent === "C") {
+      clear();
+    } else if (button.textContent === "x") {
+      multiply();
+    } else if (button.textContent === "÷") {
+      divide();
+    } else if (button.textContent === "±") {
+      plusMinus();
+    } else if (button.textContent === "<=") {
+      backspace();
+    } else if (button.textContent === "%") {
+      percent();
+    } else if (button.textContent === "π") {
+      pi();
+    } else if (button.textContent === "x ²") {
+      square();
+    } else if (button.textContent === "√") {
+      squareRoot();
+    } else if (button.textContent === "sin") {
+      sin();
+    } else if (button.textContent === "cos") {
+      cos();
+    } else if (button.textContent === "tan") {
+      tan();
+    } else if (button.textContent === "log") {
+      log();
+    } else if (button.textContent === "ln") {
+      ln();
+    } else if (button.textContent === "x^") {
+      exponent();
+    } else if (button.textContent === "x !") {
+      factorial();
+    } else if (button.textContent === "e") {
+      exp();
+    } else if (button.textContent === "rad") {
+      radians();
+    } else if (button.textContent === "∘") {
+      degrees();
+    }
+  });
+});
+
+
+function syntaxError() {
+  if (eval(display.value) == SyntaxError || eval(display.value) == ReferenceError || eval(display.value) == TypeError) {
+    display.value == "Syntax Error";
+  }
+}
+
+
+function equals() {
+  if ((display.value).indexOf("^") > -1) {
+    var base = (display.value).slice(0, (display.value).indexOf("^"));
+    var exponent = (display.value).slice((display.value).indexOf("^") + 1);
+    display.value = eval("Math.pow(" + base + "," + exponent + ")");
+  } else {
+    display.value = eval(display.value)
+    checkLength()
+    syntaxError()
+  }
+}
+
+function clear() {
+  display.value = "";
+}
+
+function backspace() {
+  display.value = display.value.substring(0, display.value.length - 1);
+}
+
+function multiply() {
+  display.value += "*";
+}
+
+function divide() {
+  display.value +=  "/";
+}
+
+function plusMinus() {
+  if (display.value.charAt(0) === "-") {
+    display.value = display.value.slice(1);
+  } else {
+    display.value = "-" + display.value;
+  }
+}
+
+function factorial() {
+  var number = 1;
+  if (display.value === 0) {
+    display.value = "1";
+  } else if (display.value < 0) {
+    display.value = "undefined";
+  } else {
+    var number = 1;
+    for (var i = display.value; i > 0; i--) {
+      number *=  i;
+    }
+    display.value = number;
+  }
+}
+
+function pi() {
+  display.value = (display.value * Math.PI);
+}
+
+function square() {
+  display.value = eval(display.value * display.value);
+}
+
+function squareRoot() {
+  display.value = Math.sqrt(display.value);
+}
+
+function percent() {
+  display.value = display.value / 100;
+}
+
+function sin() {
+  display.value = Math.sin(display.value);
+}
+
+function cos() {
+  display.value = Math.cos(display.value);
+}
+
+function tan() {
+  display.value = Math.tan(display.value);
+}
+
+function log() {
+  display.value = Math.log10(display.value);
+}
+
+function ln() {
+  display.value = Math.log(display.value);
+}
+
+function exponent() {
+  display.value += "^";
+}
+
+function exp() {
+  display.value = Math.exp(display.value);
+}
+
+function radians() {
+  display.value = display.value * (Math.PI / 180);
+}
+
+function degrees() {
+  display.value = display.value * (180 / Math.PI);
+}
+    </script>
+  </body>
+</html>

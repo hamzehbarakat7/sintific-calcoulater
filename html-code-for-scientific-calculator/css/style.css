@@ -1,0 +1,126 @@
+/* General settings for the calculator */
+.calculator {
+  width: 100vw;
+  height: 100vh;
+  background-color: beige;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Input field settings */
+input[type="text"] {
+  width: 80%;
+  height: 15%;
+  border-radius: 5px;
+  border: 0px;
+  background-color: #333333;
+  color: #d9d9d9;
+  padding: 0 5px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+/* Button grid container */
+.calc-buttons {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px; /* Adds space between the two sections */
+}
+
+/* Section 1 - 40% width for the first set of buttons */
+.functions-one {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%; /* 40% width */
+  justify-content: space-between; /* Distribute buttons evenly */
+  gap: 10px; /* Adds space between buttons */
+}
+
+/* Section 2 - 40% width for the second set of buttons */
+.functions-two {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%; /* 40% width */
+  justify-content: space-between; /* Distribute buttons evenly */
+  gap: 10px; /* Adds space between buttons */
+}
+
+/* Button styles */
+.button {
+  width: 30%; /* Adjust width to fit 3 buttons per row */
+  height: 15%;
+  margin: 1%;
+  border: none;
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+button:hover {
+  background-color: hsla(180, 100%, 40%, 0.3);
+  transition: 0.2s;
+}
+
+/* Color styles for the buttons */
+.triggers {
+  background-color: #ffc266;
+}
+
+.numbers {
+  background-color: #999999;
+}
+
+.basic-stuff {
+  background-color: #80d4ff;
+}
+
+.complex-stuff {
+  background-color: #80ffff;
+}
+
+/* Ensure the calculator fills the entire screen */
+main {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;  /* Ensure vertical layout */
+  justify-content: flex-start; /* Align content at the top */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Footer with "made by" text */
+footer {
+  position: fixed; /* Fix the footer to the bottom */
+  bottom: 0; /* Position at the bottom of the screen */
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 10px 0;
+  background-color: beige; /* Optional: background color for footer */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow to distinguish from the content */
+}
+
+footer a {
+  color: #007bff; /* Link color */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
